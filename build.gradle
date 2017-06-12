@@ -27,6 +27,8 @@ targetCompatibility = 1.8
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-devtools")
+    compile("org.webjars:bootstrap")
+    compile("org.webjars:jquery")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 

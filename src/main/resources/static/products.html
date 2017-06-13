@@ -109,7 +109,7 @@
                     <div class="col-lg-6">
                         <h2>Beverages</h2>
                         <div class="table-responsive">
-                            <table class="table table-hover table-striped">
+                            <table id="beverages" class="table table-hover table-striped">
                                 <thead>
                                 <tr>
                                     <th>product</th>
@@ -150,7 +150,7 @@
                     <div class="col-lg-6">
                         <h2>Starters</h2>
                         <div class="table-responsive">
-                            <table class="table table-hover table-striped">
+                            <table id="starters" class="table table-hover table-striped">
                                 <thead>
                                 <tr>
                                     <th>product</th>
@@ -188,7 +188,7 @@
                     <div class="col-lg-6">
                         <h2>Pizza and Pasta</h2>
                         <div class="table-responsive">
-                            <table class="table table-hover table-striped">
+                            <table id="pizzaAndPasta" class="table table-hover table-striped">
                                 <thead>
                                 <tr>
                                     <th>product</th>
@@ -221,7 +221,7 @@
                     <div class="col-lg-6">
                         <h2>Meat and Fish</h2>
                         <div class="table-responsive">
-                            <table class="table table-hover table-striped">
+                            <table id="meatAndFish" class="table table-hover table-striped">
                                 <thead>
                                 <tr>
                                     <th>product</th>
@@ -259,7 +259,7 @@
                     <div class="col-lg-6">
                         <h2>Salads</h2>
                         <div class="table-responsive">
-                            <table class="table table-hover table-striped">
+                            <table  id="salads" class="table table-hover table-striped">
                                 <thead>
                                 <tr>
                                     <th>product</th>
@@ -292,7 +292,7 @@
                     <div class="col-lg-6">
                         <h2>Dessert</h2>
                         <div class="table-responsive">
-                            <table class="table table-hover table-striped">
+                            <table id="dessert" class="table table-hover table-striped">
                                 <thead>
                                 <tr>
                                     <th>product</th>
@@ -390,6 +390,40 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btn_submit').on("click",function (e) {
+                e.preventDefault();
+                var productName, productPrice;
+                productName = $('#product_name').val();
+                productPrice = $('#product_price').val();
+                if($.trim(productName) === ""){
+                    alert("Product name cannot be empty");
+                }
+                else if(!$.trim($.isNumeric(productPrice))){
+                    alert("Price must be numeric");
+                }
+                else {
+                    var data = {};
+                    data["productName"] = productName;
+                    data["productPrice"] = productPrice;
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json",
+                        url: "/saveproduct",
+                        data: JSON.stringify(data),
+                        dataType: 'json',
+                        timeout: 6000,
+                        success: function (data) {
+                            if (confirm("Product with Id " +data + " Saved")){
+                                window.location.reload();
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 
 </body>
 

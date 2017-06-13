@@ -21,6 +21,8 @@ dependency-reduced-pom.xml
 .classpath
 .project
 .settings/
+.bin
+.lock
 
 # IntelliJ IDEA Files
 

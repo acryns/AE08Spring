@@ -1,4 +1,4 @@
-package hello;
+package com.rmt;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

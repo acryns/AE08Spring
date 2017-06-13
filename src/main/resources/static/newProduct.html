@@ -109,8 +109,8 @@
                         <form role="form">
 
                             <div class="form-group">
-                                <label>Product</label>
-                                <input class="form-control" placeholder="Enter product name">
+                                <label label for="product_name">>Product</label>
+                                <input class="form-control" id="product_name" placeholder="Enter product name">
                             </div>
 
                             <div class="form-group">
@@ -128,13 +128,13 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <label>Price</label>
+                        <label label for="product_price">>Price</label>
 
                         <form role="form">
 
                             <div class="form-group input-group">
                                 <span class="input-group-addon"><i class="fa fa-eur"></i></span>
-                                <input type="text" class="form-control" placeholder="00,00">
+                                <input type="text" class="form-control" id="product_price" placeholder="00,00">
                             </div>
 
                         </form>
@@ -151,7 +151,7 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-success">Create</button>
+                        <button type="submit" class="btn btn-success" id="btn_submit">Create</button>
 
                     </div>
                 </div>
@@ -169,7 +169,40 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
+    <script>
+ $(document).ready(function () {
+       $('#btn_submit').on("click",function (e) {
+           e.preventDefault();
+           var productName, productPrice;
+           productName = $('#product_name').val();
+           productPrice = $('#product_price').val();
+           if($.trim(productName) === ""){
+               alert("Product name cannot be empty");
+           }
+           else if(!$.trim($.isNumeric(productPrice))){
+               alert("Price must be numeric");
+           }
+           else {
+               var data = {};
+               data["productName"] = productName;
+               data["productPrice"] = productPrice;
+               $.ajax({
+                   type: "POST",
+                   contentType: "application/json",
+                   url: "/saveproduct",
+                   data: JSON.stringify(data),
+                   dataType: 'json',
+                   timeout: 6000,
+                   success: function (data) {
+                       if (confirm("Product with Id " +data + " Saved")){
+                           window.location.reload();
+                       }
+                   }
+               });
+           }
+       });
+    });
+    </script>
 </body>
 
 </html>

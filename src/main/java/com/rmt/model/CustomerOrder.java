@@ -1,6 +1,6 @@
 package com.rmt.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -21,6 +21,30 @@ import javax.persistence.ManyToMany;
 	    private Double total;
 
 	    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE} , fetch = FetchType.LAZY)
-	    private List<Product> products;
+	    private Set<Product> products;
+
+		public Double getTotal() {
+			return total;
+		}
+
+		public void setTotal(Double total) {
+			this.total = total;
+		}
+
+		public Integer getOrderId() {
+			return orderId;
+		}
+
+		public void setOrderId(Integer orderId) {
+			this.orderId = orderId;
+		}
+
+		public Set<Product> getProducts() {
+			return products;
+		}
+
+		public void setProducts(Set<Product> products) {
+			this.products = products;
+		}
 
 }

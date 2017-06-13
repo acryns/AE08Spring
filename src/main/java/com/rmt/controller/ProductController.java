@@ -19,7 +19,7 @@ public class ProductController {
 	ProductRepository productRepository;
 
 	@RequestMapping("/product/{id}")
-	public String product(@PathVariable Long id, Model model) {
+	public String product(@PathVariable Integer id, Model model) {
 		model.addAttribute("product", productRepository.findOne(id));
 		return "product";
 	}

@@ -3,3 +3,7 @@ create table users (
   password varchar(256),
   enabled boolean
 );
+
+create table test (
+  test varchar(255)
+);

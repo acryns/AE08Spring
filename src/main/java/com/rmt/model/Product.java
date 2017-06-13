@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "product")
 public class Product {
@@ -14,8 +16,10 @@ public class Product {
 
 	private Integer productId;
 
+	@JsonProperty("product_name")
 	private String productName;
 
+	@JsonProperty("product_price")
 	private Double productPrice;
 
 	public Integer getProductId() {

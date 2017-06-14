@@ -22,7 +22,7 @@ public class Product {
 	@JsonProperty("productPrice")
 	private Double productPrice;
 	
-	@JsonProperty("product_description")
+	@JsonProperty("productDesc")
 	private String productDescription;
 
 	public Integer getProductId() {

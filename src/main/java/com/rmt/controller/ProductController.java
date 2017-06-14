@@ -24,11 +24,11 @@ public class ProductController {
 		return "product";
 	}
 
-	@RequestMapping(value = "/listproducts", method = RequestMethod.GET, produces="application/json")
-	public @ResponseBody Iterable<Product> productsList(Model model) {
-/*		model.addAttribute("products", productRepository.findAll());
-		return "products";*/
-		return productRepository.findAll();
+	@RequestMapping(value = "/listproducts", method = RequestMethod.GET)
+	public @ResponseBody String productsList(Model model) {
+		model.addAttribute("products", productRepository.findAll());
+		return "products";
+//		return productRepository.findAll();
 	}
 
 	@RequestMapping(value = "/saveproduct", method = RequestMethod.POST)

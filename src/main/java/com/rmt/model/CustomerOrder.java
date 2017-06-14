@@ -1,5 +1,7 @@
 package com.rmt.model;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -19,6 +21,10 @@ import javax.persistence.ManyToMany;
 	    private Integer orderId;
 
 	    private Double total;
+	    
+	    private Date date;
+	    
+	    private Time time;
 
 	    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE} , fetch = FetchType.LAZY)
 	    private Set<Product> products;
@@ -47,4 +53,19 @@ import javax.persistence.ManyToMany;
 			this.products = products;
 		}
 
+		public Date getDate() {
+			return date;
+		}
+
+		public void setDate(java.util.Date day) {
+			this.date = day;
+		}
+
+		public Time getTime() {
+			return time;
+		}
+
+		public void setTime(Time time) {
+			this.time = time;
+		}
 }

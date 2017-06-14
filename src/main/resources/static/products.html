@@ -17,6 +17,7 @@
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/bestOfTheRest.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -25,6 +26,7 @@
     <![endif]-->
     <script type="text/javascript" src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
     <script type="text/javascript" src="webjars/bootstrap/4.0.0-alpha.6-1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="webjars/datatables/1.9.4/media/js/jquery.dataTables.min.js"></script>
 </head>
 
 <body>
@@ -338,15 +340,18 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#beverages').DataTable( {
-                "ajax": '/products'
+                "sAjaxSource": "/listproducts",
+       			"sAjaxDataProp": "",
+			    "order": [[ 0, "asc" ]],
+			    "aoColumns": [
+			      { "mData": "productId"},
+		          { "mData": "productName" },
+				  { "mData": "productPrice" },
+				  { "mData": "productDescription" },
+			]
             } );
         } );
     </script>

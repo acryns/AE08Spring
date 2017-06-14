@@ -16,10 +16,10 @@ public class Product {
 
 	private Integer productId;
 
-	@JsonProperty("product_name")
+	@JsonProperty("productName")
 	private String productName;
 
-	@JsonProperty("product_price")
+	@JsonProperty("productPrice")
 	private Double productPrice;
 
 	public Integer getProductId() {

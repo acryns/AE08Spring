@@ -1,9 +1,12 @@
 package com.rmt.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -24,6 +27,10 @@ public class Product {
 	
 	@JsonProperty("productDesc")
 	private String productDescription;
+	
+	@JsonProperty("productCategory")
+	@OneToOne (cascade = {CascadeType.PERSIST}, fetch= FetchType.EAGER)
+	private Category category;
 
 	public Integer getProductId() {
 		return productId;
@@ -55,6 +62,14 @@ public class Product {
 
 	public void setProductDescription(String productDescription) {
 		this.productDescription = productDescription;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 }

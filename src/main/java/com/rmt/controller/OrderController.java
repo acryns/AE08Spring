@@ -1,5 +1,7 @@
 package com.rmt.controller;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,7 +36,7 @@ public class OrderController {
 
     @RequestMapping(value="/createorder", method = RequestMethod.POST)
     @ResponseBody
-    public String saveOrder(@RequestParam String firstName, @RequestParam String lastName, @RequestParam(value="productIds[]") Integer[] productIds){
+    public String saveOrder(@RequestParam(value="productIds[]") Integer[] productIds){
 
         CustomerOrder customerOrder = new CustomerOrder();
         Set<Product> productSet = new HashSet<Product>();
@@ -47,6 +49,8 @@ public class OrderController {
             total = total + (productRepository.findOne(productId).getProductPrice());
         }
         
+        Timestamp timestamp = new Timestamp(new Date().getTime());
+        customerOrder.setCurrentTime(timestamp);
         orderRepository.save(customerOrder);
 
         return customerOrder.getOrderId().toString();

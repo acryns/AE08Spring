@@ -71,7 +71,7 @@
                                     <th>edit</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+<!--                                <tbody>
                                 <tr>
                                     <td>Water</td>
                                     <td>water</td>
@@ -96,7 +96,7 @@
                                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">edit</button>
                                     </td>
                                 </tr>
-                                </tbody>
+                                </tbody>-->
                             </table>
                         </div>
                     </div>
@@ -344,38 +344,11 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#btn_submit').on("click",function (e) {
-                e.preventDefault();
-                var productName, productPrice;
-                productName = $('#product_name').val();
-                productPrice = $('#product_price').val();
-                if($.trim(productName) === ""){
-                    alert("Product name cannot be empty");
-                }
-                else if(!$.trim($.isNumeric(productPrice))){
-                    alert("Price must be numeric");
-                }
-                else {
-                    var data = {};
-                    data["productName"] = productName;
-                    data["productPrice"] = productPrice;
-                    $.ajax({
-                        type: "POST",
-                        contentType: "application/json",
-                        url: "/saveproduct",
-                        data: JSON.stringify(data),
-                        dataType: 'json',
-                        timeout: 6000,
-                        success: function (data) {
-                            if (confirm("Product with Id " +data + " Saved")){
-                                window.location.reload();
-                            }
-                        }
-                    });
-                }
-            });
-        });
+        $(document).ready(function() {
+            $('#beverages').DataTable( {
+                "ajax": '/products'
+            } );
+        } );
     </script>
 
 </body>

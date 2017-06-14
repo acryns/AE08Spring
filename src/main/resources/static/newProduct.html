@@ -93,7 +93,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Home</a>
+                                <i class="fa fa-dashboard"></i> <a href="index.html">Home</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-edit"></i> New Product
@@ -120,7 +120,7 @@
 
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" rows="3"></textarea>
+                                <textarea class="form-control" id="product_desc" rows="3"></textarea>
                             </div>
 
                         </form>
@@ -170,38 +170,38 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
     <script>
- $(document).ready(function () {
-       $('#btn_submit').on("click",function (e) {
-           e.preventDefault();
-           var productName, productPrice;
-           productName = $('#product_name').val();
-           productPrice = $('#product_price').val();
-           if($.trim(productName) === ""){
-               alert("Product name cannot be empty");
-           }
-           else if(!$.trim($.isNumeric(productPrice))){
-               alert("Price must be numeric");
-           }
-           else {
-               var data = {};
-               data["productName"] = productName;
-               data["productPrice"] = productPrice;
-               $.ajax({
-                   type: "POST",
-                   contentType: "application/json",
-                   url: "/saveproduct",
-                   data: JSON.stringify(data),
-                   dataType: 'json',
-                   timeout: 6000,
-                   success: function (data) {
-                       if (confirm("Product with Id " +data + " Saved")){
-                           window.location.reload();
-                       }
-                   }
-               });
-           }
-       });
-    });
+        $(document).ready(function () {
+            $('#btn_submit').on("click", function (e) {
+                e.preventDefault();
+                var productName, productPrice;
+                productName = $('#product_name').val();
+                productPrice = $('#product_price').val();
+                productDesc = $('#product_desc').val();
+                if ($.trim(productName) === "") {
+                    alert("Product name cannot be empty");
+                } else if (!$.trim($.isNumeric(productPrice))) {
+                    alert("Price must be numeric");
+                } else {
+                    var data = {};
+                    data["productName"] = productName;
+                    data["productPrice"] = productPrice;
+                    data["productDesc"] = productDesc;
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json",
+                        url: "/saveproduct",
+                        data: JSON.stringify(data),
+                        dataType: 'json',
+                        timeout: 6000,
+                        success: function (data) {
+                            if (confirm("Product with Id " + data + " Saved")) {
+                                window.location.reload();
+                            }
+                        }
+                    });
+                }
+            });
+        });
     </script>
 </body>
 

@@ -21,6 +21,9 @@ public class Product {
 
 	@JsonProperty("productPrice")
 	private Double productPrice;
+	
+	@JsonProperty("product_description")
+	private String productDescription;
 
 	public Integer getProductId() {
 		return productId;
@@ -44,6 +47,14 @@ public class Product {
 
 	public void setProductPrice(Double productPrice) {
 		this.productPrice = productPrice;
+	}
+
+	public String getProductDescription() {
+		return productDescription;
+	}
+
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
 	}
 
 }

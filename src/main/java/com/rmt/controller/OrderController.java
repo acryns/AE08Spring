@@ -1,6 +1,7 @@
 package com.rmt.controller;
 
-import java.sql.Timestamp;
+import java.sql.Time;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -49,8 +50,10 @@ public class OrderController {
             total = total + (productRepository.findOne(productId).getProductPrice());
         }
         
-        Timestamp timestamp = new Timestamp(new Date().getTime());
-        customerOrder.setCurrentTime(timestamp);
+        Time time = new Time(Calendar.getInstance().getTime().getTime());
+        Date day = new Date();
+        customerOrder.setDate(day);
+        customerOrder.setTime(time);
         orderRepository.save(customerOrder);
 
         return customerOrder.getOrderId().toString();

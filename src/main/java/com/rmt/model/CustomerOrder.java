@@ -1,6 +1,7 @@
 package com.rmt.model;
 
-import java.sql.Timestamp;
+import java.sql.Time;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -21,7 +22,9 @@ import javax.persistence.ManyToMany;
 
 	    private Double total;
 	    
-	    private Timestamp currentTime;
+	    private Date date;
+	    
+	    private Time time;
 
 	    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE} , fetch = FetchType.LAZY)
 	    private Set<Product> products;
@@ -50,12 +53,19 @@ import javax.persistence.ManyToMany;
 			this.products = products;
 		}
 
-		public Timestamp getCurrentTime() {
-			return currentTime;
+		public Date getDate() {
+			return date;
 		}
 
-		public void setCurrentTime(Timestamp currentTime) {
-			this.currentTime = currentTime;
+		public void setDate(java.util.Date day) {
+			this.date = day;
 		}
 
+		public Time getTime() {
+			return time;
+		}
+
+		public void setTime(Time time) {
+			this.time = time;
+		}
 }

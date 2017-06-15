@@ -1,5 +1,8 @@
 package com.rmt.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rmt.model.Product;
 import com.rmt.repository.ProductRepository;
 
@@ -25,10 +29,9 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/listproducts", method = RequestMethod.GET)
-	public @ResponseBody String productsList(Model model) {
-		model.addAttribute("products", productRepository.findAll());
-		return "products";
-//		return productRepository.findAll();
+	public @ResponseBody Iterable<Product> productsList(Model model) {
+		saveProductfromJson("C:\\git\\github\\AE08Spring\\src\\main\\java\\com\\rmt\\products.json");
+		return productRepository.findAll();
 	}
 
 	@RequestMapping(value = "/saveproduct", method = RequestMethod.POST)
@@ -36,5 +39,22 @@ public class ProductController {
 	public String saveProduct(@RequestBody Product product) {
 		productRepository.save(product);
 		return product.getProductId().toString();
+	}
+	
+	public void saveProductfromJson(String path) {
+		System.out.println("Importing json...");
+    	try {
+			ObjectMapper mapper = new ObjectMapper();
+			//JSON from file to Object
+			Product [] products = mapper.readValue(new File(path), Product[].class);
+			for (Product p : products) {
+					System.out.println(p.toString());
+					productRepository.save(p);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Great succes!!!");
 	}
 }

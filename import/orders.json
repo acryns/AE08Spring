@@ -1,16 +1,13 @@
 [{
 		"orderTotal": 137.00,
 		"orderDate": "2017-03-15"
-
 	},
 	{
 		"orderTotal": 11.11,
 		"orderDate": "2017-05-15"
-
 	},
 	{
 		"orderTotal": 1337,
-		"orderDate": "2017-01-15"
-	
+		"orderDate": "2017-01-15"	
 	}
 ]

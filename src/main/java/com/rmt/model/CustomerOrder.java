@@ -1,6 +1,5 @@
 package com.rmt.model;
 
-import java.sql.Time;
 import java.util.Date;
 import java.util.Set;
 
@@ -12,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 @Entity
 	public class CustomerOrder {
@@ -20,14 +21,14 @@ import javax.persistence.ManyToMany;
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 	    private Integer orderId;
 
-//	    @JsonProperty("orderTotal")
+	    @JsonProperty("orderTotal")
 	    private Double total;
 	    
-//	    @JsonProperty("orderDate")
+	    @JsonProperty("orderDate")
 	    private Date date;
 	    
 //	    @JsonProperty("orderTime")
-	    private Time time;
+//	    private Time time;
 
 	    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE} , fetch = FetchType.LAZY)
 	    private Set<Product> products;
@@ -64,11 +65,16 @@ import javax.persistence.ManyToMany;
 			this.date = day;
 		}
 
-		public Time getTime() {
-			return time;
-		}
-
-		public void setTime(Time time) {
-			this.time = time;
+//		public Time getTime() {
+//			return time;
+//		}
+//
+//		public void setTime(Time time) {
+//			this.time = time;
+//		}
+		
+		@Override
+		public String toString() {
+			return "Total: " + this.total + " Date: " + this.date;
 		}
 }

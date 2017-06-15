@@ -1,5 +1,6 @@
 package com.rmt.controller;
 
+import com.rmt.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.rmt.repository.CategoryRepository;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class CategoryController {
@@ -16,9 +18,9 @@ public class CategoryController {
 	private CategoryRepository categoryRepository;
 
 	@RequestMapping(value = "/categories", method = RequestMethod.GET)
-	public String categoryList(Model model) {
-		model.addAttribute("categories", categoryRepository.findAll());
-		return "categories";
+	public @ResponseBody
+	Iterable<Category>  categoryList(Model model) {
+		return categoryRepository.findAll();
 	}
 	
 	@RequestMapping(value = "/category/{id}")

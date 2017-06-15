@@ -68,6 +68,7 @@
                                     <th>Name</th>
                                     <th>Price</th>
                                     <th>Description</th>
+                                    <th>Category</th>
                                     <th>Edit???</th>
                                     <th>DELETE???</th>
                                 </tr>
@@ -115,13 +116,7 @@
                         </form>
                         <div class="form-group">
                             <label>Categories</label>
-                            <select class="form-control">
-                                <option>Beverages</option>
-                                <option>Starters</option>
-                                <option>Pizza and Pasta</option>
-                                <option>Meat and Fish</option>
-                                <option>Salads</option>
-                                <option>Desert</option>
+                            <select id="droppy" class="form-control">
                             </select>
                         </div>
                         <div class="modal-footer">
@@ -136,6 +131,15 @@
     </div>
     <!-- /#wrapper -->
 
+    <script>
+        $(document).ready(function() {
+            $.getJSON("/categories", function(obj) {
+                $.each(obj, function(key, value) {
+                    $("#droppy").append("<option>" + value.categoryName + "</option>");
+                });
+            });
+        });
+    </script>
 
 
     <script>
@@ -150,12 +154,18 @@
 		          { "mData": "productName" },
 				  { "mData": "productPrice" },
 				  { "mData": "productDesc" },
+				  {"mData": "productCategory"},
 				  { "mData": null,
-				  "mRender" : function ( data, type, full, meta ) {
-				  return '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">edit</button>';}},
-				  				  { "mData": null,
-				  "mRender" : function ( data, type, full, meta ) {
-				  return '<button type="button" class="btn btn-warning">delete</button>';}}
+				    "mRender" : function ( data, type, full, meta ) {
+				           var butt =  '<button type="button" id="btn-edit" class="btn btn-info" data-toggle="modal" data-target="#myModal">edit</button>';
+                                    return butt;
+				           }
+				  },
+				  { "mData": null,
+				    "mRender" : function ( data, type, full, meta ) {
+				            return '<button type="button" id="btn-del" class="btn btn-warning">delete</button>';
+				            }
+				  }
 			],
     } );
 });

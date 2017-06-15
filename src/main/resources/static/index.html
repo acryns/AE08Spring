@@ -112,7 +112,9 @@
                             <div id="test" class="panel-body">
                                 <div id="morris-area-chart"></div>
                             </div>
-                            <button type="button" id="btn-test" class="btn btn-info">load</button>
+                            <button type="button" id="btn-test" class="btn btn-info">load Products</button>
+                            <button type="button" id="btn-test2" class="btn btn-info">load Categories</button>
+                            <button type="button" id="btn-test3" class="btn btn-info">load Orders</button>
                         </div>
                     </div>
                 </div>
@@ -159,6 +161,13 @@
             $.ajax({
                 type: "POST",
                 url: "/loadproducts",
+                });
+            });
+            $('#btn-test2').click(function()
+            {
+            $.ajax({
+                type: "POST",
+                url: "/loadcategories",
                 });
             });
             $('#orders').DataTable( {

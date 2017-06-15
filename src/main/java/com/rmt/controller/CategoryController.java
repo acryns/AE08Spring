@@ -24,7 +24,6 @@ public class CategoryController {
 	@RequestMapping(value = "/categories", method = RequestMethod.GET)
 	public @ResponseBody
 	Iterable<Category>  categoryList(Model model) {
-		saveProductfromJson(System.getProperty("user.dir") + "\\import\\categories.json");
 		return categoryRepository.findAll();
 	}
 	
@@ -48,5 +47,9 @@ public class CategoryController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	@RequestMapping(value = "/loadcategories", method = RequestMethod.POST)
+	public @ResponseBody void load(Model model) {
+		saveProductfromJson(System.getProperty("user.dir") + "\\import\\categories.json");
 	}
 }

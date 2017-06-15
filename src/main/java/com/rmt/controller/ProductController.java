@@ -44,4 +44,11 @@ public class ProductController {
 		productRepository.save(product);
 		return product.getProductId().toString();
 	}
+
+	@RequestMapping(value = "/removeproduct", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean removeProduct(@RequestBody Product prod) {
+		productRepository.delete(prod);
+		return true;
+	}
 }

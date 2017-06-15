@@ -153,28 +153,47 @@
 $(document).ready(function() {
     editor = new $.fn.dataTable.Editor( {
         ajax: function ( method, url, data, success, error ) {
-data = data.data[Object.keys(data.data)[0]];            var vdata = {};
-                    console.log(this);
-                    console.log(JSON.stringify(data));
+                var action = data.action;
+                data = data.data[Object.keys(data.data)[0]];            var vdata = {};
+
+
                     vdata["productId"] = data.productId;
                     vdata["productName"] = data.productName;
                     vdata["productPrice"] = data.productPrice;
                     vdata["productDesc"] = data.productDesc;
-                    vdata["category"] = data.category.categoryName
-                     console.log(JSON.stringify(vdata));
-                    $.ajax({
-                        type: "POST",
-                        contentType: "application/json",
-                        url: "/saveproduct",
-                        data: JSON.stringify(vdata),
-                        dataType: 'json',
-                        timeout: 6000,
-                        success: function (data) {
-                            if (confirm("Product with Id " + data + " Saved")) {
-                                window.location.reload();
-                            }
-                        }
-                    });
+                    vdata["category"] = data.category.categoryName;
+                    if (action == "edit") {
+    $.ajax({
+
+        type: "POST",
+        contentType: "application/json",
+        url: "/saveproduct",
+        data: JSON.stringify(vdata),
+        dataType: 'json',
+        timeout: 6000,
+        success: function(data) {
+            if (confirm("Product with Id " + data + " Saved")) {
+                window.location.reload();
+            }
+        }
+
+    });
+} else {
+    $.ajax({
+
+            type: "POST",
+            contentType: "application/json",
+            url: "/removeproduct",
+            data:JSON.stringify(vdata),
+            dataType: 'json',
+            timeout: 6000,
+                    success: function(data) {
+            if (confirm("Deleted")) {
+                window.location.reload();
+            }
+        }
+            });
+        }
         },
         table: "#beverages",
         idSrc: "productId",

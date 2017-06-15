@@ -109,9 +109,10 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Area Chart</h3>
                             </div>
-                            <div class="panel-body">
+                            <div id="test" class="panel-body">
                                 <div id="morris-area-chart"></div>
                             </div>
+                            <button type="button" id="btn-test" class="btn btn-info">load</button>
                         </div>
                     </div>
                 </div>
@@ -153,6 +154,13 @@
 -->
     <script>
         $(document).ready(function() {
+            $('#btn-test').click(function()
+            {
+            $.ajax({
+                type: "POST",
+                url: "/loadproducts",
+                });
+            });
             $('#orders').DataTable( {
                 "sAjaxSource": "/orders",
        			"sAjaxDataProp": "",
@@ -162,6 +170,7 @@
 
 
     } );
+
 });
     </script>
 

@@ -30,8 +30,12 @@ public class ProductController  {
 
 	@RequestMapping(value = "/listproducts", method = RequestMethod.GET)
 	public @ResponseBody Iterable<Product> productsList(Model model) {
-		saveProductfromJson(System.getProperty("user.dir") + "\\import\\products.json");
 		return productRepository.findAll();
+	}
+
+	@RequestMapping(value = "/loadproducts", method = RequestMethod.POST)
+	public @ResponseBody void load(Model model) {
+		saveProductfromJson(System.getProperty("user.dir") + "\\import\\products.json");
 	}
 
 	@RequestMapping(value = "/saveproduct", method = RequestMethod.POST)

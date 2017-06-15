@@ -1,0 +1,16 @@
+[{
+		"orderTotal": 137.00,
+		"orderDate": "2017-03-15",
+		"orderTime": "9:13:35.566"
+	},
+	{
+		"orderTotal": 11.11,
+		"orderDate": "2017-05-15",
+		"orderTime": "14:33:32.566"
+	},
+	{
+		"orderTotal": 1337,
+		"orderDate": "2017-01-15",
+		"orderTime": "10:10:10.566"
+	}
+]

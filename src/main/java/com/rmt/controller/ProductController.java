@@ -17,7 +17,7 @@ import com.rmt.model.Product;
 import com.rmt.repository.ProductRepository;
 
 @Controller
-public class ProductController {
+public class ProductController  {
 
 	@Autowired
 	ProductRepository productRepository;
@@ -30,7 +30,7 @@ public class ProductController {
 
 	@RequestMapping(value = "/listproducts", method = RequestMethod.GET)
 	public @ResponseBody Iterable<Product> productsList(Model model) {
-		saveProductfromJson("C:\\git\\github\\AE08Spring\\import\\products.json");
+		saveProductfromJson(System.getProperty("user.dir") + "\\import\\products.json");
 		return productRepository.findAll();
 	}
 

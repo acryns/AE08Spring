@@ -1,16 +1,16 @@
 [{
 		"productName": "pizza",
-		"productPrice": 123,
-		"productDesc": "asd123"
+		"productPrice": 10,
+		"productDesc": "leckere pizza"
 	},
 	{
 		"productName": "pasta",
-		"productPrice": 1123,
-		"productDesc": "asd123tetetet"
+		"productPrice": 5,
+		"productDesc": "mmmmmmmmmmmmmmmmmmmmmmm"
 	},
 	{
 		"productName": "kuchen",
 		"productPrice": 13,
-		"productDesc": "asd123asdasd"
+		"productDesc": "apfelkuchen"
 	}
 ]

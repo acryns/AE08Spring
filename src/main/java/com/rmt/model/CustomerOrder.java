@@ -20,10 +20,13 @@ import javax.persistence.ManyToMany;
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 	    private Integer orderId;
 
+//	    @JsonProperty("orderTotal")
 	    private Double total;
 	    
+//	    @JsonProperty("orderDate")
 	    private Date date;
 	    
+//	    @JsonProperty("orderTime")
 	    private Time time;
 
 	    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE} , fetch = FetchType.LAZY)

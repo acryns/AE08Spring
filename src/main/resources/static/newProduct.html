@@ -95,13 +95,7 @@
 
                         <div class="form-group">
                             <label>Categories</label>
-                            <select class="form-control">
-                                <option>Beverages</option>
-                                <option>Starters</option>
-                                <option>Pizza and Pasta</option>
-                                <option>Meat and Fish</option>
-                                <option>Salads</option>
-                                <option>Desert</option>
+                            <select id="droppy" class="form-control">
                             </select>
                         </div>
 
@@ -118,11 +112,21 @@
     </div>
     <!-- /#wrapper -->
 
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.getJSON("/categories", function(obj) {
+                $.each(obj, function(key, value) {
+                    $("#droppy").append("<option value="+value.categoryId+">" + value.categoryName + "</option>");
+                });
+            });
+        });
+    </script>
     <script>
         $(document).ready(function () {
             $('#btn_submit').on("click", function (e) {
@@ -131,6 +135,7 @@
                 productName = $('#product_name').val();
                 productPrice = $('#product_price').val();
                 productDesc = $('#product_desc').val();
+                category = $('#droppy').val();
                 if ($.trim(productName) === "") {
                     alert("Product name cannot be empty");
                 } else if (!$.trim($.isNumeric(productPrice))) {
@@ -140,6 +145,7 @@
                     data["productName"] = productName;
                     data["productPrice"] = productPrice;
                     data["productDesc"] = productDesc;
+                    data["category"] = category;
                     $.ajax({
                         type: "POST",
                         contentType: "application/json",

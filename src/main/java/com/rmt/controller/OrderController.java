@@ -22,46 +22,46 @@ import com.rmt.repository.ProductRepository;
 @Controller
 public class OrderController {
 
-    @Autowired
-    private ProductRepository productRepository;
+	@Autowired
+	private ProductRepository productRepository;
 
-    @Autowired
-    private OrderRepository orderRepository;
+	@Autowired
+	private OrderRepository orderRepository;
 
-    @RequestMapping(value = "/orders", method = RequestMethod.GET)
-    public @ResponseBody Iterable<CustomerOrder> productsList(Model model){
-        return orderRepository.findAll();
-    }
+	@RequestMapping(value = "/orders", method = RequestMethod.GET)
+	public @ResponseBody Iterable<CustomerOrder> productsList(Model model) {
+		return orderRepository.findAll();
+	}
 
-    @RequestMapping(value="/createorder", method = RequestMethod.POST)
-    @ResponseBody
-    public String saveOrder(@RequestParam(value="productIds[]") Integer[] productIds){
+	@RequestMapping(value = "/createorder", method = RequestMethod.POST)
+	@ResponseBody
+	public String saveOrder(@RequestParam(value = "productIds[]") Integer[] productIds) {
 
-        CustomerOrder customerOrder = new CustomerOrder();
-        Set<Product> productSet = new HashSet<Product>();
-        for (Integer productId:productIds){
-            productSet.add(productRepository.findOne(productId));
-        }
-        customerOrder.setProducts(productSet);
-        Double total = 0.0;
-        for (Integer productId:productIds){
-            total = total + (productRepository.findOne(productId).getProductPrice());
-        }
-        
-        Time time = new Time(Calendar.getInstance().getTime().getTime());
-        Date day = new Date();
-        customerOrder.setDate(day);
-        customerOrder.setTime(time);
-        orderRepository.save(customerOrder);
+		CustomerOrder customerOrder = new CustomerOrder();
+		Set<Product> productSet = new HashSet<Product>();
+		for (Integer productId : productIds) {
+			productSet.add(productRepository.findOne(productId));
+		}
+		customerOrder.setProducts(productSet);
+		Double total = 0.0;
+		for (Integer productId : productIds) {
+			total = total + (productRepository.findOne(productId).getProductPrice());
+		}
 
-        return customerOrder.getOrderId().toString();
-    }
+		Time time = new Time(Calendar.getInstance().getTime().getTime());
+		Date day = new Date();
+		customerOrder.setDate(day);
+		customerOrder.setTime(time);
+		orderRepository.save(customerOrder);
 
-    @RequestMapping(value = "/removeorder", method = RequestMethod.POST)
-    @ResponseBody
-    public String removeOrder(@RequestParam Integer Id){
-        orderRepository.delete(Id);
-        return Id.toString();
-    }
-    
+		return customerOrder.getOrderId().toString();
+	}
+
+	@RequestMapping(value = "/removeorder", method = RequestMethod.POST)
+	@ResponseBody
+	public String removeOrder(@RequestParam Integer Id) {
+		orderRepository.delete(Id);
+		return Id.toString();
+	}
+
 }

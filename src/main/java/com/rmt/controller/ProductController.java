@@ -41,8 +41,8 @@ public class ProductController  {
 		return product.getProductId().toString();
 	}
 	
-	public void saveProductfromJson(String path) {
-		System.out.println("Importing json...");
+	private void saveProductfromJson(String path) {
+		System.out.println("Importing json from filesystem ...");
     	try {
 			ObjectMapper mapper = new ObjectMapper();
 			//JSON from file to Object
@@ -55,6 +55,5 @@ public class ProductController  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Great succes!!!");
 	}
 }

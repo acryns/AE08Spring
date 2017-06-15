@@ -30,9 +30,6 @@ public class OrderController {
 
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
     public @ResponseBody Iterable<CustomerOrder> productsList(Model model){
-/*        model.addAttribute("products", productRepository.findAll());
-        model.addAttribute("orders", orderRepository.findAll());
-        return "orders";*/
         return orderRepository.findAll();
     }
 

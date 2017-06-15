@@ -1,16 +1,19 @@
 [{
 		"productName": "pizza",
 		"productPrice": 10,
-		"productDesc": "leckere pizza"
+		"productDesc": "leckere pizza",
+		"category" : "testCategory1"
 	},
 	{
 		"productName": "pasta",
 		"productPrice": 5,
-		"productDesc": "mmmmmmmmmmmmmmmmmmmmmmm"
+		"productDesc": "mmmmmmmmmmmmmmmmmmmmmmm",
+		"category" : "testCategory2"
 	},
 	{
 		"productName": "kuchen",
 		"productPrice": 13,
-		"productDesc": "apfelkuchen"
+		"productDesc": "apfelkuchen",
+		"category" : "IamADifferentJavaObjBeenMapped"
 	}
 ]

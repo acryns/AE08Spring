@@ -11,6 +11,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 @Table (name="category")
 public class Category {
+	
+	public Category() {
+	}
+	
+	public Category(String name) {
+		this.name = name;
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 

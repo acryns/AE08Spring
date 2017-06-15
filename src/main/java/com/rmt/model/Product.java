@@ -14,6 +14,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 @Table(name = "product")
 public class Product {
+    public Product() {
+    }
+    
+    public Product(String productName, String productDescription, Double productPrice, Category category) {
+    	this.productName = productName;
+    	this.productDescription = productDescription;
+    	this.productPrice = productPrice;
+    	this.category = category;
+    }
+    
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,7 +39,6 @@ public class Product {
 	@JsonProperty("productDesc")
 	private String productDescription;
 
-	@JsonProperty("productCategory")
 	@OneToOne(cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
 	private Category category;
 

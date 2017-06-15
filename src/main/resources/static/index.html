@@ -23,9 +23,9 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script type="text/javascript" src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script type="text/javascript" src="webjars/bootstrap/4.0.0-alpha.6-1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="webjars/datatables/1.9.4/media/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.15/dataRender/datetime.js"></script>
 
 </head>
 
@@ -98,8 +98,8 @@
                                     <thead>
                                         <tr>
                                             <th>Order #</th>
-                                            <th>Order Date</th>
                                             <th>Amount (USD)</th>
+                                            <th>Order Date</th>
                                             <th>Products</th>
                                         </tr>
                                     </thead>
@@ -159,8 +159,11 @@
     <script src="js/plugins/morris/morris.min.js"></script>
     <script src="js/plugins/morris/morris-data.js"></script>
 -->
+    <script src="js/plugins/datetime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.js"></script>
     <script>
         $(document).ready(function () {
+        global = typeof window !== "undefined" ? window : this,
 
             $('#btn-test').click(function () {
                 $.ajax({
@@ -182,7 +185,7 @@
             });
             $('#orders').DataTable({
                 "sAjaxSource": "/listorders",
-                "sAjaxDataProp": "data",
+       			"sAjaxDataProp": "",
                 "order": [
                     [0, "asc"]
                 ],
@@ -193,8 +196,7 @@
                         "mData": "orderTotal"
                     },
                     {
-                        "mData": "orderDate",
-                        render: $.fn.dataTable.render.moment( 'Do MMM YYYYY' )
+                        "mData": "orderDate" ,
                     },
                     {
                         "mData": "products"

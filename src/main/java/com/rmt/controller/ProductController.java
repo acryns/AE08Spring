@@ -30,7 +30,7 @@ public class ProductController {
 
 	@RequestMapping(value = "/listproducts", method = RequestMethod.GET)
 	public @ResponseBody Iterable<Product> productsList(Model model) {
-		saveProductfromJson("C:\\git\\github\\AE08Spring\\src\\main\\java\\com\\rmt\\products.json");
+		saveProductfromJson("C:\\git\\github\\AE08Spring\\import\\products.json");
 		return productRepository.findAll();
 	}
 

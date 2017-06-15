@@ -135,7 +135,7 @@
                 productName = $('#product_name').val();
                 productPrice = $('#product_price').val();
                 productDesc = $('#product_desc').val();
-                category = $('#droppy').val();
+                productCategory = $('#droppy').val();
                 if ($.trim(productName) === "") {
                     alert("Product name cannot be empty");
                 } else if (!$.trim($.isNumeric(productPrice))) {
@@ -145,7 +145,7 @@
                     data["productName"] = productName;
                     data["productPrice"] = productPrice;
                     data["productDesc"] = productDesc;
-                    data["productCategory"] = category;
+                    data["category"] = productCategory;
                     $.ajax({
                         type: "POST",
                         contentType: "application/json",

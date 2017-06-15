@@ -32,23 +32,4 @@ public class ImportProductJson {
 			e.printStackTrace();
 		}
 	}
-	// System.out.println("Importing json from filesystem ...");
-	// try {
-	// ObjectMapper mapper = new ObjectMapper();
-	//
-	// //JSON from file to Object
-	// Object [] objs = mapper.readValue(new File(path), Object[].class);
-	// for (Object p : objs) {
-	// Product product = new Product();
-	// Category category = new Category();
-	// mapper.
-	// if()
-	// System.out.println(p.toString());
-	//// pr.save(p);
-	// }
-	// } catch (IOException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// }
 }

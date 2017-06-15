@@ -39,6 +39,7 @@ public class Product {
 	@JsonProperty("productDesc")
 	private String productDescription;
 
+	@JsonProperty("category")
 	@OneToOne(cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
 	private Category category;
 

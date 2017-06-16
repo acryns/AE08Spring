@@ -160,26 +160,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.js"></script>
     <script>
         $(document).ready(function () {
-        global = typeof window !== "undefined" ? window : this,
-
-            $('#btn-test').click(function () {
-                $.ajax({
-                    type: "POST",
-                    url: "/loadproducts",
-                });
-            });
-            $('#btn-test2').click(function () {
-                $.ajax({
-                    type: "POST",
-                    url: "/loadcategories",
-                });
-            });
-            $('#btn-test3').click(function () {
-                $.ajax({
-                    type: "POST",
-                    url: "/loadorders",
-                });
-            });
             $('#orders').DataTable({
                 "sAjaxSource": "/listorders",
        			"sAjaxDataProp": "",
